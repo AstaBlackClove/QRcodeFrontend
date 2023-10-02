@@ -1,1 +1,65 @@
-<p>view works!</p>
+<nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+      <span class="navbar-brand mb-0 h1 title">ORcode Generator</span>
+    </div>
+</nav>
+<div class="container mt-5">
+    <div class="content_container">
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-3">
+                <div class="card_container1">
+                    <h1 class="options_heading text-center mb-3">Options</h1>
+                    <div class="display_grid">
+                        <div 
+                        [ngClass]="{'selected_option': data.selected}" 
+                        class="col-2 d-flex flex-column justify-content-center options cursor" 
+                        *ngFor="let data of options; let i = index"
+                        (click)="changeDetedted(i,data.name)">
+                            <div class="col-12 text-center">
+                                <img [src]="data.link" [alt]="data.name" [ngClass]="{'svg_color': data.selected}">
+                            </div>
+                            <span class="text-center option_title">{{data.name}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-5">
+                <div class="card_container2">
+                    <h1 class="options_heading text-center mb-3">{{selectedTitle}}</h1>
+                    <div class="inner_container">
+                        <!-- URL -->
+                        <div class="row" *ngIf="selectedTitle == 'URL'">
+                            <div class="col-12">
+                                <label class="">Enter URL</label>
+                            </div>
+                            <div class="col-12 mt-4">
+                                <input class="url_input" [(ngModel)]="urlValue" type="text" (input)="onInputChange($event)">
+                            </div>
+                        </div>
+                        <!-- Vcard -->
+
+                    </div>
+                </div>
+            </div>
+            <div class="col-4">
+                <div class="card_container3">
+                    <h1 class="options_heading text-center mb-3">QR code</h1>
+                    <div class="col-12" *ngIf="qrCode">
+                        <img class="qr_image" [src]="qrCode" alt="">
+                        <div class="row d-flex justify-content-center mt-5">
+                            <div class="col-8">
+                                <button class="button" (click)="downloadImage('image/png')">PNG</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="row d-flex justify-content-center mt-5">
+    <div class="col-8">
+        <button class="button" type="submit">Generate</button>
+    </div>
+</div> -->
