@@ -15,8 +15,26 @@ export class ViewComponent implements OnInit {
   options:any[]=[];
   selectedTitle:any;
   urlForm!: FormGroup;
+
+  //baseUrl
   urlValue:any;
+
+  //vCard
+  firstName:any;
+  lastName:any;
+  mail:any;
+  mobile:any;
+  company:any;
+  street:any;
+  city:any;
+  state:any;
+  country:any;
+  pincode:any;
+  url:any;
+
+
   qrCode:any;
+  loading:boolean = false;
 
   constructor(
     private fb: FormBuilder,
@@ -46,7 +64,7 @@ export class ViewComponent implements OnInit {
     })
 
     //the below subject recive the value and add an delay time to hit the api
-    this.userInputSubject.pipe(debounceTime(500)).subscribe((res) => {
+    this.userInputSubject.pipe(debounceTime(700)).subscribe((res) => {
       this.urlFormSubmit(res);
     })
   }
@@ -55,6 +73,7 @@ export class ViewComponent implements OnInit {
   changeDetedted(index:any,name:any){
 
     this.qrCode = ''
+    this.loading = false;
     this.selectedTitle = name;
 
     this.options.forEach(item => {
@@ -75,18 +94,49 @@ export class ViewComponent implements OnInit {
 
   //this code revice the data from the subject and trigger the api
   urlFormSubmit(data:any){
+    this.loading = true;
     const form = new FormData();
     form.append('value',data)
     this.api.baseQrCode(form).subscribe((res:any) => {
       this.qrCode = res.response[0].QRcode
       this.cdr.detectChanges();
+      this.loading = false;
     })
+  }
+
+  //vCard API
+  submit(value:any){
+    if(value == 'vcard'){
+      this.loading = true;
+      const vCardForm = new FormData();
+      vCardForm.append('firstName',this.firstName);
+      vCardForm.append('lastName',this.lastName);
+      vCardForm.append('mobile',this.mobile);
+      vCardForm.append('mail',this.mail);
+      vCardForm.append('company',this.company);
+      vCardForm.append('street',this.street);
+      vCardForm.append('city',this.city);
+      vCardForm.append('state',this.state);
+      vCardForm.append('country',this.country);
+      vCardForm.append('url',this.url);
+      vCardForm.append('pincode',this.pincode);
+
+      this.api.vCard(vCardForm).subscribe((res:any) => {
+        this.qrCode = res.response[0].QRcode
+        this.loading = false;
+      })
+    }
   }
 
   //the below code is to recive the event from the input an send it to the subject
   onInputChange(event: Event){
     const inputvalue = (event.target as HTMLInputElement).value;
-    this.userInputSubject.next(inputvalue)
+    console.log(inputvalue)
+    if(inputvalue !== ''){
+      this.userInputSubject.next(inputvalue)
+    }else{
+      this.qrCode = ''
+    }
   }
 
 
@@ -115,6 +165,21 @@ export class ViewComponent implements OnInit {
 
   clearFiled(){
     this.urlValue ='';
+  }
+
+  clearVcard(){
+    this.firstName = '';
+    this.lastName = '';
+    this.mobile = '';
+    this.mail = '';
+    this.state = '';
+    this.street = '';
+    this.city = '';
+    this.pincode = '';
+    this.url = '';
+    this.company = '';
+    this.country = '';
+    this.qrCode = '';
   }
 
 }

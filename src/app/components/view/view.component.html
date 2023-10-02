@@ -37,29 +37,103 @@
                             </div>
                         </div>
                         <!-- Vcard -->
-
+                        <div *ngIf="selectedTitle == 'Vcard'">
+                            <div class="row">
+                                <div class="col-12 text-end">
+                                    <button class="clr_button" (click)="clearVcard()">Clear</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label class="">First Name</label>
+                                    <input class="vcard_input" [(ngModel)]="firstName" type="text">
+                                </div>
+                                <div class="col-6">
+                                    <label class="">Last Name</label>
+                                    <input class="vcard_input" [(ngModel)]="lastName" type="text">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <label class="">Mail</label>
+                                    <input class="vcard_input" [(ngModel)]="mail" type="text">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <label class="">Mobile</label>
+                                    <input class="vcard_input" [(ngModel)]="mobile" type="text">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <label class="">Company</label>
+                                    <input class="vcard_input" [(ngModel)]="company" type="text">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <label class="">Street</label>
+                                    <input class="vcard_input" [(ngModel)]="street" type="text">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label class="">City</label>
+                                    <input class="vcard_input" [(ngModel)]="city" type="text">
+                                </div>
+                                <div class="col-6">
+                                    <label class="">State</label>
+                                    <input class="vcard_input" [(ngModel)]="state" type="text">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label class="">Country</label>
+                                    <input class="vcard_input" [(ngModel)]="country" type="text">
+                                </div>
+                                <div class="col-6">
+                                    <label class="">PinCode</label>
+                                    <input class="vcard_input" [(ngModel)]="pincode" type="text">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <label class="">URl</label>
+                                    <input class="vcard_input" [(ngModel)]="url" type="text">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-center mt-3" *ngIf="selectedTitle == 'Vcard'">
+                        <div class="col-8">
+                            <button class="button" type="submit" (click)="submit('vcard')">Generate</button>
+                        </div>
                     </div>
                 </div>
             </div>
             <div class="col-4">
                 <div class="card_container3">
                     <h1 class="options_heading text-center mb-3">QR code</h1>
-                    <div class="col-12" *ngIf="qrCode">
-                        <img class="qr_image" [src]="qrCode" alt="">
-                        <div class="row d-flex justify-content-center mt-5">
-                            <div class="col-8">
-                                <button class="button" (click)="downloadImage('image/png')">PNG</button>
+
+                    <div class="d-flex justify-content-center" style="margin-top: 9em;" *ngIf="loading">
+                        <div class="spinner-border" style="width: 5em; height: 5em;" role="status">
+                          <span class="visually-hidden">Loading...</span>
+                        </div>
+                      </div>
+
+                      <div *ngIf="!loading">
+                        <div class="col-12" *ngIf="qrCode">
+                            <img class="qr_image" [src]="qrCode" alt="">
+                            <div class="row d-flex justify-content-center mt-5">
+                                <div class="col-8">
+                                    <button class="button" (click)="downloadImage('image/png')">PNG</button>
+                                </div>
                             </div>
                         </div>
-                    </div>
+                      </div>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-<!-- <div class="row d-flex justify-content-center mt-5">
-    <div class="col-8">
-        <button class="button" type="submit">Generate</button>
-    </div>
-</div> -->

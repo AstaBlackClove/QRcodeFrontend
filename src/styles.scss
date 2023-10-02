@@ -40,3 +40,13 @@ body{
     font-family: "semiBold";
     src: url("./assets/fonts/dosis_font/Dosis-SemiBold.ttf");
 }
+
+::-webkit-scrollbar {
+    width: 5px;
+  }
+
+::-webkit-scrollbar-thumb {
+    background-color: #4c00c4;
+    border-radius: 6px;
+  }
+  
