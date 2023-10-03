@@ -1,6 +1,10 @@
 .title{
     font-family: "medium";
     font-size: 30px;
+    margin-top: 3em;
+}
+.logo{
+    width: fit-content;
 }
 .card_container1,
 .card_container2,
@@ -51,7 +55,7 @@ img{
     height: 4vh;
 }
 label{
-    font-family: 'bold';
+    font-family: 'medium';
 }
 .url_input{
     width: 100%;
@@ -61,7 +65,8 @@ label{
     border-radius: 5px;
 }
 
-.vcard_input{
+.vcard_input,
+.mail_input{
     width: 100%;
     height: 3vh;
     padding: 1em;
@@ -69,13 +74,31 @@ label{
     border-radius: 5px;
 }
 
+.mail_sub{
+    width: 100%;
+    height: 4vh;
+    padding: 1em;
+    border: 2px solid black;
+    border-radius: 5px;
+}
+
+.mail_msg{
+    width: 100%;
+    height: 10em;
+    padding: 1em;
+    border: 2px solid black;
+    border-radius: 5px;
+    overflow: hidden;
+    resize: none;
+}
+
 .button{
     width: 100%;
     padding: .50em;
     color: #ffffff;
     border-radius: 5px;
-    background-color: #4c00c4;
-
+    background-color: #7733ff;
+    border: none;
     // position: relative;
     // isolation: isolate;
 }
@@ -85,7 +108,8 @@ label{
     padding: .1em;
     color: #ffffff;
     border-radius: 5px;
-    background-color: #4c00c4;
+    background-color: #7733ff;
+    border: none;
 }
 
 // .button::after{
@@ -111,8 +135,8 @@ label{
 // }
 
 .qr_image{
-    width: 100%;
-    height: 35vh;
+    width: fit-content;
+    height: fit-content;
 }
 
 .cursor{
