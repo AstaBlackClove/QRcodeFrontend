@@ -49,4 +49,8 @@ body{
     background-color: #4c00c4;
     border-radius: 6px;
   }
+
+  ::-webkit-scrollbar-thumb {
+    display: none;
+  }
   

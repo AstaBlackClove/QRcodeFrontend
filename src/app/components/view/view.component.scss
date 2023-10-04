@@ -16,23 +16,84 @@
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
     background-color: #ffffff;
 }
+
+@media (max-width: 768px) {
+    .card_container1{
+        width: 100%;
+        min-height: 30vh;
+        border-radius: 5px;
+        padding: 1em;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        background-color: #ffffff;
+    }
+  }
+
+  @media (max-width: 993px) {
+    .card_container1{
+        width: 100%;
+        min-height: 30vh;
+        border-radius: 5px;
+        padding: 1em;
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+        background-color: #ffffff;
+    }
+  }
+
+
 .inner_container{
     padding: 1em;
     height: 50vh;
     overflow-y: auto;
 }
+.inner_option_container{
+    width: 100%;
+    overflow-x: auto;
+    overflow-y: hidden;
+    height: 58vh;
+}
+
+@media (max-width: 768px) {
+    .inner_option_container{
+        width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        height: 18vh;
+    }
+  }
+
+  @media (max-width: 993px) {
+    .inner_option_container{
+        width: 100%;
+        overflow-x: auto;
+        overflow-y: hidden;
+        height: 18vh;
+    }
+  }
+
 .display_grid{
     display: grid;
     grid-template-columns: auto auto;
     gap: 1em;
 }
+
 .options{
-    width: 100%;
+    width: 60%;
     height: 8vh;
     border-radius: 10px;
     background-color: #f5fafe;
     transition: 250ms;
 }
+
+@media (max-width: 768px) {
+    .options{
+        width: 60%;
+        height: 10vh;
+        border-radius: 10px;
+        background-color: #f5fafe;
+        transition: 250ms;
+    }
+  }
+
 .options:hover{
     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
@@ -91,6 +152,19 @@ label{
     overflow: hidden;
     resize: none;
 }
+
+// .svg{
+//     width: 12vh;
+//     height: 12vh;
+// }
+
+
+  @media (max-width: 993px) {
+    .svg{
+        width: 4vh;
+        height: 4vh;
+    }
+  }
 
 .button{
     width: 100%;

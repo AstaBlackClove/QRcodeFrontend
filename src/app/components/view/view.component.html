@@ -11,24 +11,24 @@
 <div class="container mt-5">
     <div class="content_container">
         <div class="row d-flex justify-content-center align-items-center">
-            <div class="col-3">
-                <div class="card_container1">
+            <div class="col-sm-12 col-lg-3">
+                <div class="card_container1 mb-3 mb-lg-0">
                     <h1 class="options_heading text-center mb-3">Options</h1>
-                    <div class="display_grid">
+                    <div class="d-flex flex-row flex-sm-row flex-lg-column align-items-center inner_option_container">
                         <div 
                         [ngClass]="{'selected_option': data.selected}" 
-                        class="col-2 d-flex flex-column justify-content-center options cursor" 
+                        class="col-4 col-sm-2 col-lg-2 d-flex flex-column justify-content-center options cursor me-sm-3 ms-2 mt-2" 
                         *ngFor="let data of options; let i = index"
                         (click)="changeDetedted(i,data.name)">
-                            <div class="col-12 text-center">
-                                <img [src]="data.link" [alt]="data.name" [ngClass]="{'svg_color': data.selected}">
+                            <div class="col-12 text-center container">
+                                <img [src]="data.link" [alt]="data.name" class="svg" [ngClass]="{'svg_color': data.selected}">
                             </div>
                             <span class="text-center option_title">{{data.name}}</span>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="col-5">
+            <div class="col-sm-12 col-lg-5 mt-sm-3 mt-lg-0">
                 <div class="card_container2">
                     <h1 class="options_heading text-center mb-3">{{selectedTitle}}</h1>
                     <div class="inner_container">
@@ -255,7 +255,7 @@
                     </div>
                 </div>
             </div>
-            <div class="col-4">
+            <div class="col-sm-12 col-lg-4 mt-3 mb-4 mt-sm-3 mt-lg-0 mb-sm-4 mb-lg-0">
                 <div class="card_container3">
                     <h1 class="options_heading text-center mb-3">QR code</h1>
 
