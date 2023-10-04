@@ -8,78 +8,79 @@ import { catchError, map } from 'rxjs/operators';
 })
 export class ApiServiceService {
 
-  Url = 'https://qrcodebackend-9l9t.onrender.com';
+  Url = 'https://blushing-zipper-yak.cyclic.cloud';
+  // Url = 'http://localhost:3000'
 
   constructor(private http: HttpClient) { }
 
   baseQrCode(data:any){
-    this.http.post(`${this.Url}/baseQrCode`,data).pipe(catchError(err => this.handleError(err)),map((res) => {
+    return this.http.post(`${this.Url}/baseQrCode`,data).pipe(catchError(err => this.handleError(err)),map((res) => {
       return res;
     }))
   }
 
   vCard(data:any){
-    this.http.post(`${this.Url}/vCard`,data).pipe(catchError(err => this.handleError(err)),map((res) => {
+    return this.http.post(`${this.Url}/vCard`,data).pipe(catchError(err => this.handleError(err)),map((res) => {
       return res;
     }))
   }
 
   mailQrCode(data:any){
-    this.http.post(`${this.Url}/mailQrCode`,data).pipe(catchError(err => this.handleError(err)),map((res) => {
+    return this.http.post(`${this.Url}/mailQrCode`,data).pipe(catchError(err => this.handleError(err)),map((res) => {
       return res;
     }))
   }
 
   wifiQrCode(data:any){
-    this.http.post(`${this.Url}/wifiQrCode`,data).pipe(catchError(err => this.handleError(err)),map((res) => {
+    return this.http.post(`${this.Url}/wifiQrCode`,data).pipe(catchError(err => this.handleError(err)),map((res) => {
       return res;
     }))
   }
 
   cryptoQrCode(data:any){
-    this.http.post(`${this.Url}/cryptoQrCode`,data).pipe(catchError(err => this.handleError(err)),map((res) => {
+    return this.http.post(`${this.Url}/cryptoQrCode`,data).pipe(catchError(err => this.handleError(err)),map((res) => {
       return res;
     }))
   }
 
   youtubeQrCode(data:any){
-    this.http.post(`${this.Url}/youtubeQrCode`,data).pipe(catchError(err => this.handleError(err)),map((res) => {
+    return this.http.post(`${this.Url}/youtubeQrCode`,data).pipe(catchError(err => this.handleError(err)),map((res) => {
       return res;
     }))
   }
 
   facebookQrCode(data:any){
-    this.http.post(`${this.Url}/facebookQrCode`,data).pipe(catchError(err => this.handleError(err)),map((res) => {
+    return this.http.post(`${this.Url}/facebookQrCode`,data).pipe(catchError(err => this.handleError(err)),map((res) => {
       return res;
     }))
   }
 
   instQrCode(data:any){
-    this.http.post(`${this.Url}/instaQrCode`,data).pipe(catchError(err => this.handleError(err)),map((res) => {
+    return this.http.post(`${this.Url}/instaQrCode`,data).pipe(catchError(err => this.handleError(err)),map((res) => {
       return res;
     }))
   }
 
   tweetQrCode(data:any){
-    this.http.post(`${this.Url}/tweetQrCode`,data),pipe(catchError(err => this.handleError(err)),map((res) => {
+    return this.http.post(`${this.Url}/tweetQrCode`,data),pipe(catchError(err => this.handleError(err)),map((res) => {
       return res;
     }))
   }
 
   linkedInQrCode(data:any){
-    this.http.post(`${this.Url}/linkedInQrCode`,data).pipe(catchError(err => this.handleError(err)),map((res) => {
+    return this.http.post(`${this.Url}/linkedInQrCode`,data).pipe(catchError(err => this.handleError(err)),map((res) => {
       return res;
     }))
   }
 
   whatsappQrCode(data:any){
-    this.http.post(`${this.Url}/whatsappQrCode`,data).pipe(catchError(err => this.handleError(err)),map((res) => {
+    return this.http.post(`${this.Url}/whatsappQrCode`,data).pipe(catchError(err => this.handleError(err)),map((res) => {
       return res;
     }))
   }
 
   barCode(data:any){
-    this.http.post(`${this.Url}/code128`,data).pipe(catchError(err => this.handleError(err)),map((res) => {
+    return this.http.post(`${this.Url}/code128`,data).pipe(catchError(err => this.handleError(err)),map((res) => {
       return res;
     }))
   }
@@ -87,19 +88,24 @@ export class ApiServiceService {
 
 
   private handleError(httpError: HttpErrorResponse){
-    let message = '';
-    let ststus = httpError.status;
+    let message:string = '';
+    let status = httpError.status;
 
-    if(ststus == 401){
-      console.log(ststus)
+    if(status == 401){
+      console.log(status)
     }
 
     if(httpError instanceof ProgressEvent){
       console.log('in Progress Event');
       message = 'Network Error'
     }else{
-      message = httpError.error.message;
-      console.error(`Backend returned code` + `Body was ${httpError.error}`)
+      if (httpError.error && httpError.error.message) {
+        message = httpError.error.message;
+        console.error(`Backend returned code ${status}. Body was ${httpError.error}`);
+      } else {
+        message = 'An unexpected error occurred';
+        console.error(`Backend returned code ${status}. Error object:`, httpError);
+      }
     }
     return throwError(message);
   }

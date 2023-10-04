@@ -1,1 +1,284 @@
-<p>view works!</p>
+<nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+        <div class="d-flex justify-content-center">
+            <img class="logo" src="/assets/image/qr-code.png" alt="">
+            <div>
+                <span class="navbar-brand mb-0 ms-2 h1 title">ORcode Generator</span>
+            </div>
+        </div>
+    </div>
+</nav>
+<div class="container mt-5">
+    <div class="content_container">
+        <div class="row d-flex justify-content-center align-items-center">
+            <div class="col-sm-12 col-lg-3">
+                <div class="card_container1 mb-3 mb-lg-0">
+                    <h1 class="options_heading text-center mb-3">Options</h1>
+                    <div class="d-flex flex-row flex-sm-row flex-lg-column align-items-center inner_option_container">
+                        <div 
+                        [ngClass]="{'selected_option': data.selected}" 
+                        class="col-4 col-sm-2 col-lg-2 d-flex flex-column justify-content-center options cursor me-sm-3 ms-2 mt-2" 
+                        *ngFor="let data of options; let i = index"
+                        (click)="changeDetedted(i,data.name)">
+                            <div class="col-12 text-center container">
+                                <img [src]="data.link" [alt]="data.name" class="svg" [ngClass]="{'svg_color': data.selected}">
+                            </div>
+                            <span class="text-center option_title">{{data.name}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-lg-5 mt-sm-3 mt-lg-0">
+                <div class="card_container2">
+                    <h1 class="options_heading text-center mb-3">{{selectedTitle}}</h1>
+                    <div class="inner_container">
+                        <!-- URL -->
+                        <div class="row" *ngIf="selectedTitle == 'URL'">
+                            <div class="col-12">
+                                <label class="">Enter URL</label>
+                            </div>
+                            <div class="col-12 mt-4">
+                                <input class="url_input" [(ngModel)]="urlValue" type="text" (input)="onInputChange($event)">
+                            </div>
+                        </div>
+                        <!-- Vcard -->
+                        <div *ngIf="selectedTitle == 'Vcard'">
+                            <div class="row">
+                                <div class="col-12 text-end">
+                                    <button class="clr_button" (click)="clearVcard()">Clear</button>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label class="">First Name</label>
+                                    <input class="vcard_input" [(ngModel)]="firstName" type="text">
+                                </div>
+                                <div class="col-6">
+                                    <label class="">Last Name</label>
+                                    <input class="vcard_input" [(ngModel)]="lastName" type="text">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <label class="">Mail</label>
+                                    <input class="vcard_input" [(ngModel)]="mail" type="text">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <label class="">Mobile</label>
+                                    <input class="vcard_input" [(ngModel)]="mobile" type="text">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <label class="">Company</label>
+                                    <input class="vcard_input" [(ngModel)]="company" type="text">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <label class="">Street</label>
+                                    <input class="vcard_input" [(ngModel)]="street" type="text">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label class="">City</label>
+                                    <input class="vcard_input" [(ngModel)]="city" type="text">
+                                </div>
+                                <div class="col-6">
+                                    <label class="">State</label>
+                                    <input class="vcard_input" [(ngModel)]="state" type="text">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-6">
+                                    <label class="">Country</label>
+                                    <input class="vcard_input" [(ngModel)]="country" type="text">
+                                </div>
+                                <div class="col-6">
+                                    <label class="">PinCode</label>
+                                    <input class="vcard_input" [(ngModel)]="pincode" type="text">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <label class="">URl</label>
+                                    <input class="vcard_input" [(ngModel)]="url" type="text">
+                                </div>
+                            </div>
+                        </div>
+                        <!-- mail -->
+                        <div *ngIf="selectedTitle == 'Mail'">
+                            <div class="row">
+                                <div class="col-12">
+                                    <label class="">Mail</label>
+                                    <input class="mail_input" [(ngModel)]="sendMail" type="text">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <label class="">Subject</label>
+                                    <input class="mail_sub" [(ngModel)]="sub" type="text">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <label class="">Message</label>
+                                    <textarea class="mail_msg" [(ngModel)]="msg"  cols="30" rows="10"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- WiFi -->
+                        <div *ngIf="selectedTitle == 'WIFI'">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-6">
+                                            <label class="">SSID</label>
+                                        </div>
+                                        <div class="col-6 text-end">
+                                            <input class="form-check-input" type="checkbox" [(ngModel)]="hidden" (input)="setHidden($event)" value="" id="defaultCheck1">
+                                            <label class="form-check-label ms-2" for="defaultCheck1">
+                                              Hidden
+                                            </label>
+                                            <img 
+                                            class="ms-2 mb-1"  
+                                            src="assets\svg\hint.svg" 
+                                            data-toggle="tooltip" data-placement="top" title="is this an Hidden WiFi network?"
+                                            alt="hint" 
+                                            style="width: 1vw; height: 2vh;">
+                                        </div>
+                                    </div>
+                                    <input class="mail_input" [(ngModel)]="ssid" type="text">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <label class="">Password</label>
+                                    <input class="mail_input" [(ngModel)]="password" type="password">
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-12">
+                                    <div class="row">
+                                        <div class="col-4">
+                                            <label class="">Encryption</label>
+                                            <img 
+                                            class="ms-2 mb-1"  
+                                            src="assets\svg\hint.svg" 
+                                            data-toggle="tooltip" data-placement="top" title="the type of security protocol on your network?"
+                                            alt="hint" 
+                                            style="width: 1vw; height: 2vh;">
+                                        </div>
+                                        <div class="col-8">
+                                            <input class="form-check-input me-2" type="radio" [(ngModel)]="secureType" value="None" name="flexRadioDefault" id="flexRadioDefault1">
+                                            <label class="form-check-label me-2" for="flexRadioDefault1">
+                                                None
+                                              </label>
+                                            <input class="form-check-input me-2" type="radio" [(ngModel)]="secureType" value="WPA/WPA2" name="flexRadioDefault" id="flexRadioDefault2">
+                                            <label class="form-check-label me-2" for="flexRadioDefault2">
+                                                WPA/WPA2
+                                              </label>
+                                            <input class="form-check-input me-2" type="radio" [(ngModel)]="secureType" value="WEP" name="flexRadioDefault" id="flexRadioDefault3">
+                                            <label class="form-check-label me-2" for="flexRadioDefault3">
+                                                WEP
+                                              </label>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Crypto -->
+                        <div *ngIf="selectedTitle == 'Crypto'">
+                            <div class="row">
+                                <div class="col-3">
+                                    <label class="">Cryptocurrency</label>
+                                </div>
+                                <div class="col-9">
+                                    <input class="form-check-input me-2" type="radio" [(ngModel)]="currencyType" value="bitcoin" name="flexRadioDefault" id="flexRadioDefault1">
+                                    <label class="form-check-label me-2" for="flexRadioDefault1">
+                                        Bitcoin
+                                    </label>
+                                    <input class="form-check-input me-2" type="radio" [(ngModel)]="currencyType" value="bitcoincash" name="flexRadioDefault" id="flexRadioDefault2">
+                                    <label class="form-check-label me-2" for="flexRadioDefault2">
+                                        Bitcoin Cash
+                                    </label>
+                                    <input class="form-check-input me-2" type="radio" [(ngModel)]="currencyType" value="ethereum" name="flexRadioDefault" id="flexRadioDefault3">
+                                    <label class="form-check-label me-2" for="flexRadioDefault3">
+                                        Ether
+                                    </label>
+                                      <input class="form-check-input me-2" type="radio" [(ngModel)]="currencyType" value="litecoin" name="flexRadioDefault" id="flexRadioDefault3">
+                                      <label class="form-check-label me-2" for="flexRadioDefault3">
+                                          Litecoin
+                                    </label>
+                                    <input class="form-check-input me-2" type="radio" [(ngModel)]="currencyType" value="dash" name="flexRadioDefault" id="flexRadioDefault3">
+                                    <label class="form-check-label me-2" for="flexRadioDefault3">
+                                        Dash
+                                    </label>
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <label class="">Amount</label>
+                                    <input class="mail_sub" [(ngModel)]="amount" type="text">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <label class="">Receiver</label>
+                                    <input class="mail_sub" [(ngModel)]="receiver" type="text">
+                                </div>
+                            </div>
+                            <div class="row">
+                                <div class="col-12">
+                                    <label class="">Message</label>
+                                    <textarea class="mail_msg" [(ngModel)]="message"  cols="30" rows="10"></textarea>
+                                </div>
+                            </div>
+                        </div>
+                        <!-- Text -->
+                        <div class="row" *ngIf="selectedTitle == 'Text'">
+                            <div class="col-12">
+                                <label class="">Enter Text</label>
+                            </div>
+                            <div class="col-12 mt-4">
+                                <input class="url_input" [(ngModel)]="urlValue" type="text" (input)="onInputChange($event)">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row d-flex justify-content-center mt-3" *ngIf="(selectedTitle !== 'URL') && (selectedTitle !== 'Text')">
+                        <div class="col-8">
+                            <button class="button" (click)="submit(selectedTitle)">Generate</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-sm-12 col-lg-4 mt-3 mb-4 mt-sm-3 mt-lg-0 mb-sm-4 mb-lg-0">
+                <div class="card_container3">
+                    <h1 class="options_heading text-center mb-3">QR code</h1>
+
+                    <div class="d-flex justify-content-center" style="margin-top: 9em;" *ngIf="loading">
+                        <div class="spinner-border" style="width: 5em; height: 5em;" role="status">
+                          <span class="visually-hidden">Loading...</span>
+                        </div>
+                      </div>
+
+                      <div *ngIf="!loading">
+                        <div class="col-12 d-flex flex-column justify-content-center" *ngIf="qrCode">
+                            <div class="text-center">
+                                <img class="qr_image" [src]="qrCode" alt="">
+                            </div>
+                            <div class="row d-flex justify-content-center mt-5">
+                                <div class="col-8">
+                                    <button class="button" (click)="downloadImage('image/png')">PNG</button>
+                                </div>
+                            </div>
+                        </div>
+                      </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
