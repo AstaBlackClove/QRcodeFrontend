@@ -1,0 +1,10 @@
+{
+  "hosting": {
+    "public": "dist/qrcode-and-barcode-generator",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}

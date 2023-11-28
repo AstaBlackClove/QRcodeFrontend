@@ -8,7 +8,8 @@ import { catchError, map } from 'rxjs/operators';
 })
 export class ApiServiceService {
 
-  Url = 'https://blushing-zipper-yak.cyclic.cloud';
+  // Url = 'https://blushing-zipper-yak.cyclic.cloud';
+  Url = 'https://qrcodebackend-dpkh.onrender.com'
   // Url = 'http://localhost:3000'
 
   constructor(private http: HttpClient) { }
